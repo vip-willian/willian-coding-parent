@@ -28,7 +28,7 @@
 
     <insert id="insert" parameterType="cn.willian.coding.redis.domain.User" keyProperty="id" useGeneratedKeys="true">
         insert into user(phone, user_name,password)
-        values (#{password,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR})
+        values (#{phone,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR})
     </insert>
 </mapper>
 

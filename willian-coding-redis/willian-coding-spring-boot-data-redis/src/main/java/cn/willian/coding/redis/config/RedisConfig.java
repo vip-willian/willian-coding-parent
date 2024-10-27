@@ -26,8 +26,8 @@ public class RedisConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
 
         registry.addInterceptor(new UserLoginInterfaceInterceptor()).excludePathPatterns("/user/login/verify/code",
-                "/user/login");
-        registry.addInterceptor(new UserRefreshTokenInterceptor(stringRedisTemplate)).addPathPatterns("/**");
+                "/user/login").order(1);
+        registry.addInterceptor(new UserRefreshTokenInterceptor(stringRedisTemplate)).addPathPatterns("/**").order(0);
     }
 
     // @Bean

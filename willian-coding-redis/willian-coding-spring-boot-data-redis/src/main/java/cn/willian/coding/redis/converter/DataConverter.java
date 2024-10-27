@@ -1,11 +1,11 @@
 package cn.willian.coding.redis.converter;
 
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.factory.Mappers;
 
 import cn.willian.coding.redis.domain.User;
 import cn.willian.coding.redis.dto.UserDTO;
-import org.mapstruct.Mapping;
-import org.mapstruct.factory.Mappers;
 
 /**
  * @author <a href="mailto:willian.wyann@gmail.com">willian</a>
@@ -16,5 +16,8 @@ public interface DataConverter {
 
     DataConverter MAPPER = Mappers.getMapper(DataConverter.class);
 
+    @Mapping(target = "userId", source = "id")
+    @Mapping(target = "userName", source = "userName")
+    @Mapping(target = "phone", source = "phone")
     UserDTO convert(User user);
 }
