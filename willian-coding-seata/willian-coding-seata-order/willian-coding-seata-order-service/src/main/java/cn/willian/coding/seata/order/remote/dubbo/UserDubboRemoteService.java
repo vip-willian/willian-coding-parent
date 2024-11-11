@@ -22,7 +22,9 @@ public class UserDubboRemoteService {
      * 扣减用户余额
      */
     public void deductUserAmount(Long userId, BigDecimal orderAmount) {
-
-        userServiceFacade.deductUserAmount(userId, orderAmount);
+        // XA 或 AT 模式
+        // userServiceFacade.deductUserAmount(userId, orderAmount);
+        // TCC模式
+        userServiceFacade.deductUserAmountTcc(userId, orderAmount);
     }
 }

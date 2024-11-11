@@ -12,4 +12,9 @@ public interface UserServiceFacade {
      * 扣减用户余额
      */
     void deductUserAmount(Long userId, BigDecimal orderAmount);
+
+    /**
+     * 扣减用户余额
+     */
+    void deductUserAmountTcc(Long userId, BigDecimal orderAmount);
 }

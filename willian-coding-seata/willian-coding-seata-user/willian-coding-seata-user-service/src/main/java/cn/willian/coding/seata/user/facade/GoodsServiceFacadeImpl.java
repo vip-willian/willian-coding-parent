@@ -2,6 +2,7 @@ package cn.willian.coding.seata.user.facade;
 
 import cn.willian.coding.seata.goods.UserServiceFacade;
 import cn.willian.coding.seata.user.service.UserAccountService;
+import cn.willian.coding.seata.user.service.UserAccountTccService;
 import org.apache.dubbo.config.annotation.DubboService;
 
 import javax.annotation.Resource;
@@ -16,10 +17,18 @@ public class GoodsServiceFacadeImpl implements UserServiceFacade {
 
     @Resource
     private UserAccountService userAccountService;
+    @Resource
+    private UserAccountTccService userAccountTccService;
 
     @Override
     public void deductUserAmount(Long userId, BigDecimal orderAmount) {
 
         userAccountService.deductUserAmount(userId, orderAmount);
+    }
+
+    @Override
+    public void deductUserAmountTcc(Long userId, BigDecimal orderAmount) {
+
+        userAccountTccService.deductUserAmount(userId, orderAmount);
     }
 }

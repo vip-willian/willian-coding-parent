@@ -78,4 +78,19 @@
 #          log-slow-sql: true
 #mybatis:
 #  mapper-locations: classpath:mapper/*Mapper.xml
-#
+#seata:
+#  registry:
+#    type: nacos
+#    nacos:
+#      server-addr: 127.0.0.1:8848
+#      namespace: 95a0b4d2-bab8-4c9a-b31c-02d277cf67c6
+#      group: SEATA_GROUP
+#      application: seata-server
+#  # 事务组
+#  tx-service-group: seata-group
+#  service:
+#    # 事务组 与 集群的映射关系
+#    vgroup-mapping:
+#      seata-group: seata-cluster
+#  # 使用XA模式 强一致性
+#  data-source-proxy-mode: XA

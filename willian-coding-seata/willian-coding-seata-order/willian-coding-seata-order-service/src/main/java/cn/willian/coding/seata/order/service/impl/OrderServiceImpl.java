@@ -14,8 +14,8 @@ import cn.willian.coding.seata.order.remote.dubbo.GoodsDubboRemoteService;
 import cn.willian.coding.seata.order.remote.dubbo.UserDubboRemoteService;
 import cn.willian.coding.seata.order.service.OrderService;
 import com.google.common.collect.Lists;
+import io.seata.spring.annotation.GlobalTransactional;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.math.BigDecimal;
@@ -50,7 +50,9 @@ public class OrderServiceImpl implements OrderService {
         }).orElseThrow(() -> new RuntimeException("订单不存在"));
     }
 
-    @Transactional(rollbackFor = Exception.class)
+    // 开启全局事务
+    @GlobalTransactional
+    // @Transactional(rollbackFor = Exception.class)
     @Override
     public Long saveOrder(OrderParam param) {
 

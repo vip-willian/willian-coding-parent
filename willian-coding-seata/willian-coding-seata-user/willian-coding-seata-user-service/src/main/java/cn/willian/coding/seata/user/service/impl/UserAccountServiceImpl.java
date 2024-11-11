@@ -2,6 +2,7 @@ package cn.willian.coding.seata.user.service.impl;
 
 import cn.willian.coding.seata.user.dao.UserAccountMapper;
 import cn.willian.coding.seata.user.domain.UserAccount;
+import cn.willian.coding.seata.user.manage.UserAccountManager;
 import cn.willian.coding.seata.user.service.UserAccountService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,21 +19,12 @@ import java.util.Optional;
 public class UserAccountServiceImpl implements UserAccountService {
 
     @Resource
-    private UserAccountMapper userAccountMapper;
+    private UserAccountManager userAccountManager;
 
     @Transactional(rollbackFor = Exception.class)
     @Override
     public void deductUserAmount(Long userId, BigDecimal orderAmount) {
 
-        Optional<UserAccount> userAccountOpt = userAccountMapper.selectByPrimaryKey(userId);
-        if (!userAccountOpt.isPresent()) {
-            throw new RuntimeException("用户账号不存在");
-        }
-        UserAccount userAccount = userAccountOpt.get();
-        if (userAccount.getAmount().compareTo(orderAmount) < 0) {
-            throw new RuntimeException("用户余额不足，下单失败");
-        }
-        userAccount.setAmount(userAccount.getAmount().subtract(orderAmount));
-        userAccountMapper.updateByPrimaryKeySelective(userAccount);
+        userAccountManager.deductUserAmount(userId, orderAmount);
     }
 }
