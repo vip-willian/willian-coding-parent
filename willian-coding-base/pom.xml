@@ -36,6 +36,11 @@
             <artifactId>java-testdata-generator</artifactId>
             <version>1.1.2</version>
         </dependency>
+        <dependency>
+            <groupId>com.alibaba.csp</groupId>
+            <artifactId>sentinel-core</artifactId>
+            <version>1.8.6</version>
+        </dependency>
     </dependencies>
 
 </project>

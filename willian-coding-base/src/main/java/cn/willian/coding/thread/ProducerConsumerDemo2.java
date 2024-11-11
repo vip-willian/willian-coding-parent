@@ -19,9 +19,9 @@ import java.util.concurrent.locks.ReentrantLock;
 @Slf4j
 public class ProducerConsumerDemo2 {
 
-    private static ReentrantLock lock = new ReentrantLock();
-    private static Condition producerFullCond = lock.newCondition();
-    private static Condition consumerEmptyCond = lock.newCondition();
+    private static final ReentrantLock lock = new ReentrantLock();
+    private static final Condition producerFullCond = lock.newCondition();
+    private static final Condition consumerEmptyCond = lock.newCondition();
 
     public static void main(String[] args) {
 

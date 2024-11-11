@@ -14,7 +14,10 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>willian-coding-spring-boot-data-redis</module>
+        <module>willian-coding-redis-client</module>
+        <module>willian-coding-jedis-spring-boot</module>
+        <module>willian-coding-lettuce-spring-boot</module>
+        <module>willian-coding-redission-spring-boot</module>
     </modules>
 
     <properties>
@@ -22,27 +25,4 @@
         <maven.compiler.target>8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-
-    <dependencies>
-        <dependency>
-            <groupId>redis.clients</groupId>
-            <artifactId>jedis</artifactId>
-            <version>5.2.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.redisson</groupId>
-            <artifactId>redisson</artifactId>
-            <version>3.37.0</version>
-        </dependency>
-        <dependency>
-            <groupId>io.lettuce</groupId>
-            <artifactId>lettuce-core</artifactId>
-            <version>6.4.0.RELEASE</version>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter</artifactId>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
 </project>

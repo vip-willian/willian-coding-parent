@@ -1,0 +1,30 @@
+server:
+  port: 9901
+spring:
+  redis:
+    mode: "standalone"
+    # 单机模式
+    host: 127.0.0.1
+    port: 6379
+    password: 123456
+    database: 0
+    # 集群模式
+    cluster:
+      max-redirects: 3
+      nodes:
+        - 127.0.0.1:8001
+        - 127.0.0.1:8002
+        - 127.0.0.1:8003
+    # 哨兵模式
+    sentinel:
+      master: mymaster
+      nodes:
+        - 127.0.0.1:27001
+        - 127.0.0.1:27002
+        - 127.0.0.1:27003
+    jedis:
+      pool:
+        max-idle: 6
+        max-active: 32
+        max-wait: 100
+        min-idle: 4
