@@ -10,17 +10,15 @@ local limit = tonumber(ARGV[3])
 local current_time = tonumber(ARGV[4])
 -- 已经用掉的请求数
 local last_requested = 0
--- 剩余可以分配的请求数
-local remain_request = 0
--- 本次允许通过的请求数
-local allowed_num = 0
 
 local exists_key = redis.call('exists', key)
 if (exists_key == 1) then
     last_requested = redis.call('zcard', key)
 end
+-- 本次允许通过的请求数
+local allowed_num = 0
 -- 可用的请求数量
-remain_request = limit - last_requested
+local remain_request = limit - last_requested
 -- 已使用的请求数量 未超过限制数量
 if (last_requested < limit) then
     allowed_num = 1
