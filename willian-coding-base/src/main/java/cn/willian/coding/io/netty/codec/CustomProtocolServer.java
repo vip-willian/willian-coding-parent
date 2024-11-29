@@ -1,6 +1,6 @@
 package cn.willian.coding.io.netty.codec;
 
-import com.alibaba.fastjson2.JSON;
+import com.alibaba.fastjson.JSON;
 
 import cn.willian.coding.io.netty.codec.enums.ReqType;
 import cn.willian.coding.io.netty.codec.obj.MessageRecord;
