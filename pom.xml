@@ -17,6 +17,7 @@
         <module>willian-coding-redis</module>
         <module>willian-coding-seata</module>
         <module>willian-coding-sharingsphere</module>
+        <module>willian-coding-dubbo</module>
     </modules>
 
     <properties>
@@ -33,7 +34,7 @@
         <dubbo.version>3.2.14</dubbo.version>
         <hutool.version>5.8.32</hutool.version>
         <guava.version>33.3.0-jre</guava.version>
-        <fastjson.version>2.0.52</fastjson.version>
+        <fastjson.version>1.2.83</fastjson.version>
     </properties>
 
     <dependencies>
@@ -43,8 +44,8 @@
             <version>${lombok.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.alibaba.fastjson2</groupId>
-            <artifactId>fastjson2</artifactId>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
             <version>${fastjson.version}</version>
         </dependency>
         <dependency>
