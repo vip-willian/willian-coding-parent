@@ -32,6 +32,10 @@ public class CycleLinkedList {
         return cur;
     }
 
+    // 快慢指针，快指针先走2步，慢指针走1步
+    // 相交时，慢指针停留在某个位置
+    // 让快指针从头指针重新触发，快慢指针重新相遇
+    // 返回的是入环的第一个节点
     public static ListNode detectCycle2(ListNode head) {
 
         ListNode fast = head;
