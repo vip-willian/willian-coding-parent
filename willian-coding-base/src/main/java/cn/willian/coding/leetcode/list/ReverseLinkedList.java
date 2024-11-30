@@ -19,6 +19,9 @@ public class ReverseLinkedList {
 
     public static ListNode reverseList(ListNode head) {
 
+        if (head == null || head.next == null) {
+            return head;
+        }
         ListNode cur = head;
         ListNode pre = null;
         ListNode next;
