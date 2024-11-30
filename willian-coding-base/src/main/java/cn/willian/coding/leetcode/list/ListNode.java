@@ -64,4 +64,14 @@ public class ListNode {
         ListNode node2 = new ListNode(4, node3);
         return new ListNode(1, node2);
     }
+
+    public static ListNode buildNode4() {
+
+        ListNode node6 = new ListNode(1);
+        ListNode node5 = new ListNode(2, node6);
+        ListNode node4 = new ListNode(3, node5);
+        ListNode node3 = new ListNode(3, node4);
+        ListNode node2 = new ListNode(2, node3);
+        return new ListNode(1, node2);
+    }
 }
