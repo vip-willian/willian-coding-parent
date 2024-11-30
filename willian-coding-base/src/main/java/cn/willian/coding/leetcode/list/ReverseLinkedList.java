@@ -1,7 +1,5 @@
 package cn.willian.coding.leetcode.list;
 
-import lombok.Data;
-
 /**
  * @author <a href="mailto:willian.wyann@gmail.com">willian</a>
  * @datetime 2024-11-06 10:32:26
@@ -21,22 +19,14 @@ public class ReverseLinkedList {
 
     public static ListNode reverseList(ListNode head) {
 
-        // 定义当前节点指针
         ListNode cur = head;
-        // 定义节点的前一个节点
         ListNode pre = null;
-        // 临时记录当前节点的下一个
-        ListNode temp;
-
+        ListNode next;
         while (cur != null) {
-            // 保存当前节点的下一个节点
-            temp = cur.next;
-            // 将当前节点的下一个反转
+            next = cur.next;
             cur.next = pre;
-            // 移动上一个节点指针
             pre = cur;
-            // 移动当前节点指针
-            cur = temp;
+            cur = next;
         }
         return pre;
     }
