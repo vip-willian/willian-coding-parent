@@ -4,12 +4,8 @@ package cn.willian.coding.leetcode.graph;
  * @author <a href="mailto:willian.wyann@gmail.com">willian</a>
  * @since 2024-11-30 23:28:55
  */
+@SuppressWarnings("all")
 public interface IGraph<E> {
-
-    /**
-     * 创建一个图
-     */
-    IGraph<E> createGraph();
 
     /**
      * 获取顶点的个数

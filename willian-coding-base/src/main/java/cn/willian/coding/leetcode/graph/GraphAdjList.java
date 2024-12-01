@@ -13,6 +13,7 @@ import lombok.Getter;
  * @author <a href="mailto:willian.wyann@gmail.com">willian</a>
  * @since 2024-11-30 23:21:15
  */
+@SuppressWarnings("all")
 public class GraphAdjList<E> implements IGraph<E> {
 
     /**
@@ -40,15 +41,10 @@ public class GraphAdjList<E> implements IGraph<E> {
     }
 
     @Override
-    public IGraph<E> createGraph() {
-        return null;
-    }
-
-    @Override
     public boolean insertVertex(E v) {
         if (numOfVertex >= maxNumOfVertex)
             return false;
-        VNode<E> vex = new VNode<E>();
+        VNode<E> vex = new VNode<>();
         vex.data = v;
         vertexes[numOfVertex++] = vex;
         return true;
@@ -58,11 +54,13 @@ public class GraphAdjList<E> implements IGraph<E> {
     public boolean deleteVertex(E v) {
         for (int i = 0; i < numOfVertex; i++) {
             if (vertexes[i].data.equals(v)) {
+                // 删除顶点信息
                 for (int j = i; j < numOfVertex - 1; j++) {
                     vertexes[j] = vertexes[j + 1];
                 }
                 vertexes[numOfVertex - 1] = null;
                 numOfVertex--;
+                // 删除边信息
                 ENode current;
                 ENode previous;
                 for (int j = 0; j < numOfVertex; j++) {

@@ -13,6 +13,7 @@ import lombok.Getter;
  * @author <a href="mailto:willian.wyann@gmail.com">willian</a>
  * @since 2024-11-30 23:21:15
  */
+@SuppressWarnings("all")
 public class GraphAdjMatrix<E> implements IGraph<E> {
 
     /**
@@ -45,12 +46,8 @@ public class GraphAdjMatrix<E> implements IGraph<E> {
     }
 
     @Override
-    public IGraph<E> createGraph() {
-        return null;
-    }
-
-    @Override
     public boolean insertVertex(E v) {
+
         if (numOfVertex >= maxNumOfVertex)
             return false;
         vertexes[numOfVertex++] = v;
@@ -62,15 +59,20 @@ public class GraphAdjMatrix<E> implements IGraph<E> {
 
         for (int i = 0; i < numOfVertex; i++) {
             if (vertexes[i].equals(v)) {
+                // 元素全部往前移
                 for (int j = i; j < numOfVertex - 1; j++) {
                     vertexes[j] = vertexes[j + 1];
                 }
+                // 清空最后一个元素数据
                 vertexes[numOfVertex - 1] = null;
+
+                // 删除对应边信息
                 for (int col = i; col < numOfVertex - 1; col++) {
                     for (int row = 0; row < numOfVertex; row++) {
                         edges[col][row] = edges[col + 1][row];
                     }
                 }
+                // 删除对应边信息
                 for (int row = i; row < numOfVertex - 1; row++) {
                     for (int col = 0; col < numOfVertex; col++) {
                         edges[col][row] = edges[col][row + 1];
@@ -102,6 +104,7 @@ public class GraphAdjMatrix<E> implements IGraph<E> {
 
     @Override
     public boolean insertEdge(int v1, int v2, int weight) {
+
         if (v1 < 0 || v2 < 0 || v1 >= numOfVertex || v2 >= numOfVertex)
             throw new ArrayIndexOutOfBoundsException();
         edges[v1][v2] = weight;
