@@ -76,9 +76,9 @@ public class TreeOrderPrint {
         if (root == null) {
             return;
         }
-        System.out.print(root.getValue() + " ");
-        preOrderWithRecur(root.getLeft());
-        preOrderWithRecur(root.getRight());
+        System.out.print(root.val + " ");
+        preOrderWithRecur(root.left);
+        preOrderWithRecur(root.right);
     }
 
     /**
@@ -94,14 +94,14 @@ public class TreeOrderPrint {
 
         while (!stack.isEmpty()) {
             TreeNode node = stack.pop();
-            System.out.print(node.getValue() + " ");
+            System.out.print(node.val + " ");
             // 先压右节点
-            if (node.getRight() != null) {
-                stack.push(node.getRight());
+            if (node.right != null) {
+                stack.push(node.right);
             }
             // 再压左节点
-            if (node.getLeft() != null) {
-                stack.push(node.getLeft());
+            if (node.left != null) {
+                stack.push(node.left);
             }
         }
     }
@@ -114,9 +114,9 @@ public class TreeOrderPrint {
         if (root == null) {
             return;
         }
-        inOrderWithRecur(root.getLeft());
-        System.out.print(root.getValue() + " ");
-        inOrderWithRecur(root.getRight());
+        inOrderWithRecur(root.left);
+        System.out.print(root.val + " ");
+        inOrderWithRecur(root.right);
     }
 
     /**
@@ -133,13 +133,13 @@ public class TreeOrderPrint {
             // 将左子树一起放入栈
             if (cur != null) {
                 stack.push(cur);
-                cur = cur.getLeft();
+                cur = cur.left;
             } else {
                 // 弹出时打印
                 cur = stack.pop();
-                System.out.print(cur.getValue() + " ");
+                System.out.print(cur.val + " ");
                 // 存在右节点时，将右节点的左子树也全部放入栈中
-                cur = cur.getRight();
+                cur = cur.right;
             }
         }
     }
@@ -152,9 +152,9 @@ public class TreeOrderPrint {
         if (root == null) {
             return;
         }
-        postOrderWithRecur(root.getLeft());
-        postOrderWithRecur(root.getRight());
-        System.out.print(root.getValue() + " ");
+        postOrderWithRecur(root.left);
+        postOrderWithRecur(root.right);
+        System.out.print(root.val + " ");
     }
 
     /**
@@ -172,17 +172,17 @@ public class TreeOrderPrint {
             TreeNode node = stack.pop();
             result.push(node);
             // 先压左节点
-            if (node.getLeft() != null) {
-                stack.push(node.getLeft());
+            if (node.left != null) {
+                stack.push(node.left);
             }
             // 再压右节点
-            if (node.getRight() != null) {
-                stack.push(node.getRight());
+            if (node.right != null) {
+                stack.push(node.right);
             }
         }
         while (!result.isEmpty()) {
             TreeNode node = result.pop();
-            System.out.print(node.getValue() + " ");
+            System.out.print(node.val + " ");
         }
     }
 
@@ -199,12 +199,12 @@ public class TreeOrderPrint {
 
         while (!queue.isEmpty()) {
             TreeNode node = queue.poll();
-            System.out.print(node.getValue() + " ");
-            if (node.getLeft() != null) {
-                queue.offer(node.getLeft());
+            System.out.print(node.val + " ");
+            if (node.left != null) {
+                queue.offer(node.left);
             }
-            if (node.getRight() != null) {
-                queue.offer(node.getRight());
+            if (node.right != null) {
+                queue.offer(node.right);
             }
         }
     }
@@ -226,18 +226,177 @@ public class TreeOrderPrint {
             for (int i = 0; i < levelSize; i++) {
                 TreeNode node = queue.poll();
                 if (Objects.nonNull(node)) {
-                    if (node.getLeft() != null) {
-                        queue.offer(node.getLeft());
+                    if (node.left != null) {
+                        queue.offer(node.left);
                     }
-                    if (node.getRight() != null) {
-                        queue.offer(node.getRight());
+                    if (node.right != null) {
+                        queue.offer(node.right);
                     }
-                    levelElements.add(node.getValue());
+                    levelElements.add(node.val);
                 }
             }
             result.add(levelElements);
         }
         return result;
+    }
+
+    /**
+     * morris遍历
+     */
+    public static void morris(TreeNode root) {
+
+        if (root == null) {
+            return;
+        }
+        TreeNode cur = root;
+        TreeNode mostRight;
+        while (cur != null) {
+            mostRight = cur.left;
+            // 有左子节点才进入
+            if (mostRight != null) {
+                while (mostRight.right != null && mostRight.right != cur) {
+                    mostRight = mostRight.right;
+                }
+                // 说明第一次来到该节点,mostRight 变成左子树上的最右节点
+                if (mostRight.right == null) {
+                    mostRight.right = cur;
+                    cur = cur.left;
+                    continue;
+                } else {
+                    // 将mostRight的右节点回复
+                    mostRight.right = null;
+                }
+            }
+            cur = cur.right;
+        }
+    }
+
+    /**
+     * morris遍历-先序遍历
+     */
+    public static void morrisPre(TreeNode root) {
+
+        if (root == null) {
+            return;
+        }
+        TreeNode cur = root;
+        TreeNode mostRight;
+        while (cur != null) {
+            mostRight = cur.left;
+            // 有左子节点才进入
+            if (mostRight != null) {
+                while (mostRight.right != null && mostRight.right != cur) {
+                    mostRight = mostRight.right;
+                }
+                // 说明第一次来到该节点,mostRight 变成左子树上的最右节点
+                if (mostRight.right == null) {
+                    System.out.println(cur.val);
+                    mostRight.right = cur;
+                    cur = cur.left;
+                    continue;
+                } else {
+                    // 将mostRight的右节点回复
+                    mostRight.right = null;
+                }
+            } else {
+                System.out.println(cur.val);
+            }
+            cur = cur.right;
+        }
+    }
+
+    /**
+     * morris遍历-中序遍历
+     */
+    public static void morrisIn(TreeNode root) {
+
+        if (root == null) {
+            return;
+        }
+        TreeNode cur = root;
+        TreeNode mostRight;
+        while (cur != null) {
+            mostRight = cur.left;
+            // 有左子节点才进入
+            if (mostRight != null) {
+                while (mostRight.right != null && mostRight.right != cur) {
+                    mostRight = mostRight.right;
+                }
+                // 说明第一次来到该节点,mostRight 变成左子树上的最右节点
+                if (mostRight.right == null) {
+                    mostRight.right = cur;
+                    cur = cur.left;
+                    continue;
+                } else {
+                    // 将mostRight的右节点回复
+                    mostRight.right = null;
+                }
+            }
+            System.out.println(cur.val);
+            cur = cur.right;
+        }
+    }
+
+    /**
+     * morris遍历-后续序遍历
+     */
+    public static void morrisPost(TreeNode root) {
+
+        if (root == null) {
+            return;
+        }
+        TreeNode cur = root;
+        TreeNode mostRight;
+        while (cur != null) {
+            mostRight = cur.left;
+            // 有左子节点才进入
+            if (mostRight != null) {
+                while (mostRight.right != null && mostRight.right != cur) {
+                    mostRight = mostRight.right;
+                }
+                // 说明第一次来到该节点,mostRight 变成左子树上的最右节点
+                if (mostRight.right == null) {
+                    mostRight.right = cur;
+                    cur = cur.left;
+                    continue;
+                } else {
+                    // 将mostRight的右节点回复
+                    mostRight.right = null;
+                    printEdge(cur.left);
+                }
+            }
+            cur = cur.right;
+        }
+        printEdge(cur);
+    }
+
+    // 逆序打印
+    private static void printEdge(TreeNode node) {
+
+        TreeNode tail =  reverseEdge(node);
+        TreeNode cur = tail;
+        while (cur != null) {
+            System.out.println(cur.val);
+            cur = cur.right;
+        }
+        reverseEdge(tail);
+    }
+
+    private static TreeNode reverseEdge(TreeNode node) {
+
+        TreeNode prev = null;
+        TreeNode next = null;
+        while (node != null) {
+            // 保留下一个节点
+            next = node.right;
+            // 下一个节点指向临时定义的上一个节点
+            node.right = prev;
+            // 上一个节点往下一个位置移动
+            prev = node;
+            // 当前节点往下一个位置移动
+            node = next;
+        }
+        return prev;
     }
 
     /**
@@ -270,13 +429,13 @@ public class TreeOrderPrint {
                 currentLevel++;
                 currentLevelNodeNumbers = 1;
             }
-            if (node.getLeft() != null) {
-                levelMap.put(node.getLeft(), currentNodeLevel + 1);
-                queue.offer(node.getLeft());
+            if (node.left != null) {
+                levelMap.put(node.left, currentNodeLevel + 1);
+                queue.offer(node.left);
             }
-            if (node.getRight() != null) {
-                levelMap.put(node.getRight(), currentNodeLevel + 1);
-                queue.offer(node.getRight());
+            if (node.right != null) {
+                levelMap.put(node.right, currentNodeLevel + 1);
+                queue.offer(node.right);
             }
         }
         return maxBreadth;
@@ -291,9 +450,9 @@ public class TreeOrderPrint {
             return 0;
         }
         // 获取左节点最大深度
-        int leftMaxDepth = getMaxDepth(root.getLeft()) + 1;
+        int leftMaxDepth = getMaxDepth(root.left) + 1;
         // 获取右节点最大深度
-        int rightMaxDepth = getMaxDepth(root.getRight()) + 1;
+        int rightMaxDepth = getMaxDepth(root.right) + 1;
         return Math.max(leftMaxDepth, rightMaxDepth);
     }
 
@@ -306,9 +465,9 @@ public class TreeOrderPrint {
             return 0;
         }
         // 获取左节点最小深度
-        int leftMinDepth = getMinDepth(root.getLeft()) + 1;
+        int leftMinDepth = getMinDepth(root.left) + 1;
         // 获取右节点最小深度
-        int rightMinDepth = getMinDepth(root.getRight()) + 1;
+        int rightMinDepth = getMinDepth(root.right) + 1;
         return Math.min(leftMinDepth, rightMinDepth);
     }
 }

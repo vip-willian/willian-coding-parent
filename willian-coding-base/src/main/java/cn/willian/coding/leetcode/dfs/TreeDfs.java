@@ -35,7 +35,7 @@ public class TreeDfs {
         if (Objects.isNull(root)) {
             return;
         }
-        System.out.println("当前节点：" + root.getValue());
+        System.out.println("当前节点：" + root.val);
         // 遍历左边
         dfsWithRecursion(root.left);
         // 遍历右边
@@ -54,15 +54,15 @@ public class TreeDfs {
         while (!stack.isEmpty()) {
             TreeNode node = stack.pop();
 
-            System.out.println("当前节点：" + node.getValue());
+            System.out.println("当前节点：" + node.val);
 
             // 先压右节点
-            if (node.getRight() != null) {
-                stack.push(node.getRight());
+            if (node.right != null) {
+                stack.push(node.right);
             }
             // 再压左节点
-            if (node.getLeft() != null) {
-                stack.push(node.getLeft());
+            if (node.left != null) {
+                stack.push(node.left);
             }
         }
     }
@@ -85,7 +85,7 @@ public class TreeDfs {
         }
 
         List<Integer> levelList = result.get(level);
-        levelList.add(node.value);
+        levelList.add(node.val);
 
         // 遍历左边
         dfsWithLevel(node.left, level + 1);

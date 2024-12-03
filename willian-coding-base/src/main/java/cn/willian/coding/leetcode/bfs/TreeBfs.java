@@ -40,14 +40,14 @@ public class TreeBfs {
 
         while (!queue.isEmpty()) {
             TreeNode node = queue.poll();
-            System.out.println("当前节点：" + node.getValue());
+            System.out.println("当前节点：" + node.val);
             // 左节点
-            if (node.getLeft() != null) {
-                queue.add(node.getLeft());
+            if (node.left != null) {
+                queue.add(node.left);
             }
             // 右节点
-            if (node.getRight() != null) {
-                queue.add(node.getRight());
+            if (node.right != null) {
+                queue.add(node.right);
             }
         }
     }
@@ -70,14 +70,14 @@ public class TreeBfs {
                 TreeNode node = queue.poll();
                 if (node != null) {
                     // 左节点
-                    if (node.getLeft() != null) {
-                        queue.add(node.getLeft());
+                    if (node.left != null) {
+                        queue.add(node.left);
                     }
                     // 右节点
-                    if (node.getRight() != null) {
-                        queue.add(node.getRight());
+                    if (node.right != null) {
+                        queue.add(node.right);
                     }
-                    levelElements.add(node.getValue());
+                    levelElements.add(node.val);
                 }
             }
             result.add(levelElements);

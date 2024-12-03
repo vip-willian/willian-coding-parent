@@ -1,6 +1,6 @@
 package cn.willian.coding.leetcode;
 
-import cn.willian.coding.tools.ArrayPrint;
+import cn.willian.coding.tools.Prints;
 
 /**
  * 26. 删除有序数组中的重复项
@@ -23,7 +23,7 @@ public class RemoveDuplicates2 {
         int[] nums = {0, 0, 1, 1, 1, 1, 2, 2, 2, 3, 3, 4};
         int k = removeDuplicates(nums);
         System.out.println(k);
-        ArrayPrint.print(nums);
+        Prints.printArray(nums);
     }
 
 

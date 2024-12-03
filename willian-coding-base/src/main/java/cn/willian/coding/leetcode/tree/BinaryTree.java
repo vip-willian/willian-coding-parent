@@ -45,10 +45,10 @@ public class BinaryTree {
                 cur = cur.left;
             } else {
                 cur = stack.pop();
-                if (cur.getValue() < preValue) {
+                if (cur.val < preValue) {
                     return false;
                 } else {
-                    preValue = cur.getValue();
+                    preValue = cur.val;
                 }
                 cur = cur.right;
             }
@@ -75,11 +75,11 @@ public class BinaryTree {
             return null;
         }
         // 获取左子树的信息
-        SearchTreeInfo leftData = getSearchBinaryTree(node.getLeft());
-        SearchTreeInfo rightData = getSearchBinaryTree(node.getRight());
+        SearchTreeInfo leftData = getSearchBinaryTree(node.left);
+        SearchTreeInfo rightData = getSearchBinaryTree(node.left);
 
-        int minValue = node.getValue();
-        int maxValue = node.getValue();
+        int minValue = node.val;
+        int maxValue = node.val;
         if (leftData != null) {
             minValue = Math.min(leftData.minValue, minValue);
             maxValue = Math.max(leftData.maxValue, maxValue);
@@ -91,12 +91,12 @@ public class BinaryTree {
         boolean isSearch = true;
         if (leftData != null &&
         // 左子树非二叉搜索树 或 左节点的最大值 已经大于等于 当前值
-            (!leftData.isSearch || leftData.maxValue >= node.getValue())) {
+            (!leftData.isSearch || leftData.maxValue >= node.val)) {
             isSearch = false;
         }
         if (rightData != null &&
         // 右子树非二叉搜索树 或 右节点的最小值 已经小于等于 当前值
-            (!rightData.isSearch || rightData.minValue <= node.getValue())) {
+            (!rightData.isSearch || rightData.minValue <= node.val)) {
             isSearch = false;
         }
         return new SearchTreeInfo(isSearch, minValue, maxValue);
@@ -122,8 +122,8 @@ public class BinaryTree {
         boolean isFirstLeaf = false;
         while (!queue.isEmpty()) {
             TreeNode node = queue.poll();
-            left = node.getLeft();
-            right = node.getRight();
+            left = node.left;
+            right = node.right;
             if (
             // 在第一次左右节点不全之后，后续左右必须为空
             (isFirstLeaf && (left != null || right != null) ||
@@ -164,8 +164,8 @@ public class BinaryTree {
         if (root == null) {
             return new FullTreeInfo(0, 0);
         }
-        FullTreeInfo leftData = getFullBinaryTree(root.getLeft());
-        FullTreeInfo rightData = getFullBinaryTree(root.getRight());
+        FullTreeInfo leftData = getFullBinaryTree(root.left);
+        FullTreeInfo rightData = getFullBinaryTree(root.right);
 
         int height = Math.max(leftData.getHeight(), rightData.getHeight()) + 1;
         int nodes = leftData.getNodeNumbers() + rightData.getNodeNumbers() + 1;

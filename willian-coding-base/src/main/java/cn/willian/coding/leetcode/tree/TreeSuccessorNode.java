@@ -19,8 +19,8 @@ public class TreeSuccessorNode {
             return node;
         }
         // 有右子树，中序后继节点为右子树下的最后一个左节点
-        if (node.getRight() != null) {
-            return getLeftMost(node.getRight());
+        if (node.right != null) {
+            return getLeftMost(node.right);
         }
         // 没右子树，一直向上查找，判断当前节点是否为父节点的左子节点
         TreeNode parent = node.parent;

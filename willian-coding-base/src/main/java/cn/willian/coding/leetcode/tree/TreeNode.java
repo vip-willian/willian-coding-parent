@@ -1,19 +1,16 @@
 package cn.willian.coding.leetcode.tree;
 
-import lombok.Data;
-
 /**
  * @author <a href="mailto:willian.wyann@gmail.com">willian</a>
  * @since 2024-11-29 20:54:19
  */
-@Data
 @SuppressWarnings("all")
 public class TreeNode {
 
     /**
      * 当前值
      */
-    public int value;
+    public int val;
     /**
      * 左节点
      */
@@ -30,7 +27,7 @@ public class TreeNode {
     public TreeNode(int value, TreeNode left, TreeNode right) {
         this.right = right;
         this.left = left;
-        this.value = value;
+        this.val = value;
     }
 
     public static TreeNode init() {
@@ -44,16 +41,16 @@ public class TreeNode {
         TreeNode nine = new TreeNode(9, eight, null);
         TreeNode six = new TreeNode(6, four, nine);
 
-        one.setParent(three);
-        two.setParent(three);
+        one.parent = three;
+        two.parent = three;
 
-        three.setParent(four);
-        five.setParent(four);
+        three.parent = four;
+        five.parent = four;
 
-        eight.setParent(nine);
+        eight.parent = nine;
 
-        four.setParent(six);
-        nine.setParent(six);
+        four.parent = six;
+        nine.parent = six;
 
         return six;
     }
