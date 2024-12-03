@@ -19,6 +19,7 @@ public class Code300_longestIncreasingSubSequence {
             return 0;
         }
         int n = nums.length;
+        // dp[i]含义表示i位置上能获取到的最长递增子序列长度
         int[] dp = new int[n];
         // 数组元素只有1个，那么递增子序列只有1
         dp[0] = 1;
@@ -28,7 +29,7 @@ public class Code300_longestIncreasingSubSequence {
             // 该位置至少有1个递增子序列
             dp[i] = 1;
             for (int j = 0; j < i; j++) {
-                // 只有i元素位置比j元素位置大，才说明是递增，才有统计的意义
+                // 只有i元素位置比j元素位置大，才说明是递增，才能使用dp[j] +1
                 if (nums[i] > nums[j]) {
                     dp[i] = Math.max(dp[i], dp[j] + 1);
                 }
