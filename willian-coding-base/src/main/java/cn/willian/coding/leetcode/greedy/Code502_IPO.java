@@ -59,7 +59,7 @@ public class Code502_IPO {
                 return w;
             }
             // 取出一个利润最大的项目执行，获取项目的利润
-            w += maxProfitQueue.peek().profit;
+            w += maxProfitQueue.poll().profit;
         }
         return w;
     }

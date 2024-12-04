@@ -15,25 +15,24 @@ import java.util.List;
 // 对于给定的输入，保证和为 target 的不同组合数少于 150 个。
 //
 // 示例 1：
-//
 // 输入：candidates = [2,3,6,7], target = 7
 // 输出：[[2,2,3],[7]]
 // 解释：
 // 2 和 3 可以形成一组候选，2 + 2 + 3 = 7 。注意 2 可以使用多次。
 // 7 也是一个候选， 7 = 7 。
 // 仅有这两种组合。
+
 // 示例 2：
-//
 // 输入: candidates = [2,3,5], target = 8
 // 输出: [[2,2,2,2],[2,3,3],[3,5]]
+
 // 示例 3：
-//
 // 输入: candidates = [2], target = 1
 // 输出: []
-public class CombinationSum {
+public class Code39_CombinationSum {
 
-    private static final List<List<Integer>> RESULT = new ArrayList<>();
-    private static final LinkedList<Integer> PATH = new LinkedList<>();
+    private static final List<List<Integer>> result = new ArrayList<>();
+    private static final LinkedList<Integer> path = new LinkedList<>();
 
     public static void main(String[] args) {
         List<List<Integer>> result = combinationSum(new int[] {2, 3, 6, 7}, 7);
@@ -43,15 +42,15 @@ public class CombinationSum {
     public static List<List<Integer>> combinationSum(int[] candidates, int target) {
 
         if (candidates == null || candidates.length == 0 || target < 0) {
-            return RESULT;
+            return result;
         }
-        RESULT.clear();
-        PATH.clear();
+        result.clear();
+        path.clear();
         backtracking(target, candidates, 0, 0);
-        return RESULT;
+        return result;
     }
 
-    // targetNum: 目标和
+    // target: 目标和
     // sum: 当前和
     // startIndex: 开始位置
     public static void backtracking(int target, int[] candidates, int sum, int startIndex) {
@@ -61,20 +60,20 @@ public class CombinationSum {
             return;
         }
         if (sum == target) {
-            RESULT.add(new ArrayList<>(PATH));
+            result.add(new ArrayList<>(path));
             return;
         }
         for (int i = startIndex; i < candidates.length; i++) {
             // 处理
             int value = candidates[i];
-            PATH.add(value);
+            path.add(value);
             sum += value;
 
             backtracking(target, candidates, sum, i);
 
             // 回溯
             sum -= value;
-            PATH.removeLast();
+            path.removeLast();
         }
     }
 }
