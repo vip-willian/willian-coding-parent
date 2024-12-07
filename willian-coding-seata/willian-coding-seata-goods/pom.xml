@@ -11,6 +11,7 @@
 
     <artifactId>willian-coding-seata-goods</artifactId>
     <packaging>pom</packaging>
+
     <modules>
         <module>willian-coding-seata-goods-api</module>
         <module>willian-coding-seata-goods-service</module>
@@ -21,15 +22,5 @@
         <maven.compiler.target>8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>cn.willian.coding</groupId>
-                <artifactId>willian-coding-seata-goods-api</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
 
 </project>

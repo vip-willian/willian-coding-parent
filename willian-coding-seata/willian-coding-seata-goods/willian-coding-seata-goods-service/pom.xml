@@ -21,7 +21,6 @@
         <dependency>
             <groupId>cn.willian.coding</groupId>
             <artifactId>willian-coding-seata-user-api</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>cn.willian.coding</groupId>
