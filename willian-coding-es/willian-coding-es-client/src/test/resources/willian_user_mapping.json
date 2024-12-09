@@ -1,0 +1,42 @@
+{
+  "settings": {
+    "number_of_shards": 3,
+    "number_of_replicas": 3
+  },
+  "mappings": {
+    "properties": {
+      "name": {
+        "type": "text",
+        "analyzer": "standard",
+        "index": true
+      },
+      "age": {
+        "type": "integer",
+        "index": false
+      },
+      "idCard": {
+        "type": "keyword"
+      },
+      "address": {
+        "type": "object",
+        "properties": {
+          "province": {
+            "type": "keyword"
+          },
+          "city": {
+            "type": "keyword"
+          },
+          "region": {
+            "type": "keyword"
+          },
+          "detail": {
+            "type": "text"
+          }
+        }
+      }
+    }
+  },
+  "aliases": {
+    "willian_new_user": {}
+  }
+}
