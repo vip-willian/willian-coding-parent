@@ -41,6 +41,9 @@ public class EsClientPool {
 
     public static void returnClient(ElasticsearchClient client) {
 
+        if (client == null) {
+            return;
+        }
         try {
             objectPool.returnObject(client);
         } catch (Exception e) {
