@@ -2,6 +2,8 @@ package cn.wiilian.coding.es.obj;
 
 import lombok.Data;
 
+import java.util.Date;
+
 /**
  * @author <a href="mailto:willian.wyann@gmail.com">willian</a>
  * @since 2024-12-09 13:54:09
@@ -57,4 +59,8 @@ public class TbHotel {
      * 酒店图片
      */
     private String pic;
+    /**
+     * 酒店成立时间
+     */
+    private Date createdTime;
 }

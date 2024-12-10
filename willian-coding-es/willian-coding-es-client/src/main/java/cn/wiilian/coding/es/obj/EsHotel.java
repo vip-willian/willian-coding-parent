@@ -1,5 +1,8 @@
 package cn.wiilian.coding.es.obj;
 
+import java.util.Date;
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
@@ -57,6 +60,14 @@ public class EsHotel implements PrimaryID {
      * 酒店图片
      */
     private String pic;
+    /**
+     * 酒店成立时间
+     */
+    private Date createdTime;
+    /**
+     * 酒店评论
+     */
+    private List<EsHotelComment> comments;
 
     public static EsHotel mapping(TbHotel tbHotel) {
 

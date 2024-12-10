@@ -44,6 +44,24 @@
       "location": {
         "type": "geo_point"
       },
+      "createdTime": {
+        "type": "date"
+      },
+      "comments": {
+        "type": "nested",
+        "properties": {
+          "name": {
+            "type": "text"
+          },
+          "rating": {
+            "type": "short"
+          },
+          "comment": {
+            "type": "text",
+            "analyzer": "ik_max_word"
+          }
+        }
+      },
       "all": {
         "type": "text",
         "analyzer": "ik_max_word"
