@@ -1,4 +1,6 @@
-package cn.willian.coding.designmode.created.factory.factorymethod;
+package cn.willian.coding.designmode.created.factory.factorymethod.impl.logger;
+
+import cn.willian.coding.designmode.created.factory.factorymethod.Logger;
 
 /**
  * @author <a href="mailto:willian.wyann@gmail.com">willian</a>

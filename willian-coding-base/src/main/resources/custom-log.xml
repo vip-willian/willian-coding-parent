@@ -1,4 +1,4 @@
 <?xml version="1.0"?>
 <config>
-    <className>cn.willian.coding.designmode.created.factory.factorymethod.FileLoggerFactory</className>
+    <className>cn.willian.coding.designmode.created.factory.factorymethod.impl.factory.FileLoggerFactory</className>
 </config>
