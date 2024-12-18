@@ -1,5 +1,12 @@
-package cn.willian.coding.designmode.behavior.command;
+package cn.willian.coding.designmode.behavior.command.receiver;
 
+import cn.willian.coding.designmode.behavior.command.Command;
+import cn.willian.coding.designmode.behavior.command.CommandEvent;
+import cn.willian.coding.designmode.behavior.command.impl.CopyCommand;
+import cn.willian.coding.designmode.behavior.command.impl.CutCommand;
+import cn.willian.coding.designmode.behavior.command.impl.PasteCommand;
+import cn.willian.coding.designmode.behavior.command.impl.ReplaceCommand;
+import cn.willian.coding.designmode.behavior.command.impl.UndoCommand;
 import lombok.Data;
 
 /**

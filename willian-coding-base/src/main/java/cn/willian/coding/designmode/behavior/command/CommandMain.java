@@ -1,5 +1,8 @@
 package cn.willian.coding.designmode.behavior.command;
 
+import cn.willian.coding.designmode.behavior.command.receiver.Application;
+import cn.willian.coding.designmode.behavior.command.receiver.Editor;
+
 /**
  * @author <a href="mailto:willian.wyann@gmail.com">willian</a>
  * @since 2024-12-18 18:16:32

@@ -1,4 +1,4 @@
-package cn.willian.coding.designmode.behavior.command;
+package cn.willian.coding.designmode.behavior.command.receiver;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

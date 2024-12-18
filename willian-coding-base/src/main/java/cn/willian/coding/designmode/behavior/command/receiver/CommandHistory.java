@@ -1,4 +1,6 @@
-package cn.willian.coding.designmode.behavior.command;
+package cn.willian.coding.designmode.behavior.command.receiver;
+
+import cn.willian.coding.designmode.behavior.command.Command;
 
 import java.util.Stack;
 

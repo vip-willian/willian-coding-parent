@@ -1,4 +1,8 @@
-package cn.willian.coding.designmode.behavior.command;
+package cn.willian.coding.designmode.behavior.command.impl;
+
+import cn.willian.coding.designmode.behavior.command.AbstractCommand;
+import cn.willian.coding.designmode.behavior.command.receiver.Application;
+import cn.willian.coding.designmode.behavior.command.receiver.Editor;
 
 /**
  * 复制命令
