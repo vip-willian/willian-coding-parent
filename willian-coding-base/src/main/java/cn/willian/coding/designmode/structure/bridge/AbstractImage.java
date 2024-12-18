@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 public abstract class AbstractImage {
 
-    protected  SystemImage systemImage;
+    protected SystemImage systemImage;
 
     public abstract void parseFile(String fileName);
 }
