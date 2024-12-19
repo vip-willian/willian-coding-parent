@@ -4,6 +4,7 @@ package cn.willian.coding.designmode.structure.adapter;
  * @author <a href="mailto:willian.wyann@gmail.com">willian</a>
  * @since 2024-12-17 23:07:16
  */
+// Adaptee（适配者类）
 public class StandardAdapteePay {
 
     public void pay(double money) {

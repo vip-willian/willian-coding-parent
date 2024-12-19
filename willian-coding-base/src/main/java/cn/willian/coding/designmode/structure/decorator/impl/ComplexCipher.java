@@ -7,6 +7,7 @@ import cn.willian.coding.designmode.structure.decorator.CipherDecorator;
  * @author <a href="mailto:willian.wyann@gmail.com">willian</a>
  * @since 2024-12-18 11:13:26
  */
+// ConcreteDecorator 具体装饰类
 public class ComplexCipher extends CipherDecorator {
 
     public ComplexCipher(Cipher cipher) {

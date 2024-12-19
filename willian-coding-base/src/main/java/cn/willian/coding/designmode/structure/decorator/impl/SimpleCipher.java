@@ -6,6 +6,7 @@ import cn.willian.coding.designmode.structure.decorator.Cipher;
  * @author <a href="mailto:willian.wyann@gmail.com">willian</a>
  * @since 2024-12-18 11:10:22
  */
+// ConcreteComponent 具体组件
 public class SimpleCipher implements Cipher {
 
     @Override
