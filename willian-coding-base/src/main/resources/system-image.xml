@@ -1,5 +1,0 @@
-<?xml version="1.0"?>
-<config>
-    <imageType>cn.willian.coding.designmode.structure.bridge.impl.image.GIFImage</imageType>
-    <systemName>cn.willian.coding.designmode.structure.bridge.impl.system.MacSystemImageImpl</systemName>
-</config>
