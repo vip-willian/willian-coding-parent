@@ -19,6 +19,7 @@
         <module>willian-coding-sharingsphere</module>
         <module>willian-coding-dubbo</module>
         <module>willian-coding-es</module>
+        <module>willian-coding-algorithm</module>
     </modules>
 
     <properties>
