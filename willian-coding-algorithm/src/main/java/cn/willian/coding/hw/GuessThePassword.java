@@ -1,7 +1,6 @@
 package cn.willian.coding.hw;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 import java.util.StringTokenizer;
@@ -47,27 +46,28 @@ public class GuessThePassword {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        // 密码数字列表
+        // 想到的数字串
         String line = sc.nextLine();
-        // 获取密码最小数字量
+        // 最小的密码长度
         int minCount = sc.nextInt();
 
+        // 将line进行拆分放入集合中，并对集合排序
         List<String> nums = new ArrayList<>();
         StringTokenizer st = new StringTokenizer(line, ",");
         while (st.hasMoreTokens()) {
             nums.add(st.nextToken());
         }
-        Collections.sort(nums);
 
+        // 定义输出的最终结果以及路径结果
         List<String> result = new ArrayList<>();
         List<String> path = new ArrayList<>();
 
-        // 回溯从第0个元素开始找
         dfs(nums, 0, minCount, path, result);
 
         if (!result.isEmpty()) {
-            for (String s : result) {
-                System.out.println(s);
+            // 打印最终结果
+            for (String r : result) {
+                System.out.println(r);
             }
         } else {
             System.out.println("None");
@@ -76,9 +76,9 @@ public class GuessThePassword {
 
     public static void dfs(List<String> nums, int index, int minCount, List<String> path, List<String> result) {
 
-        // 终止条件
+        // 定义终止条件
         if (path.size() >= minCount) {
-            // 满足条件，放入到结果集
+            // 返回之前收集答案
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < path.size(); i++) {
                 if (i > 0) {
@@ -88,13 +88,10 @@ public class GuessThePassword {
             }
             result.add(sb.toString());
         }
-        // 已经遍历完整个输入的字符了
         if (path.size() == nums.size()) {
             return;
         }
-        // 回溯开始查找
         for (int i = index; i < nums.size(); i++) {
-            // 放入遍历的第一个数
             path.add(nums.get(i));
             dfs(nums, i + 1, minCount, path, result);
             path.remove(path.size() - 1);
