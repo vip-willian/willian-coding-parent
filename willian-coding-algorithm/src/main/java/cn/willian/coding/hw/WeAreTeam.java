@@ -80,12 +80,10 @@ public class WeAreTeam {
     // 并查集
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        String n_m = sc.nextLine();
-
         // n个人
-        int n = Integer.parseInt(n_m.split(" ")[0]);
+        int n = sc.nextInt();
         // m条消息
-        int m = Integer.parseInt(n_m.split(" ")[1]);
+        int m = sc.nextInt();
 
         if (n < 1 || n > 100000 || m < 1 || m > 100000) {
             System.out.println("NULL");
