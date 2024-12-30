@@ -33,32 +33,43 @@ import java.util.Scanner;
 // 输出
 // 3
 public class StringSubSequence {
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        String target = sc.nextLine();
-        String source = sc.nextLine();
+        while (sc.hasNext()) {
+            String target = sc.nextLine();
+            String source = sc.nextLine();
+            printSubSequence(target, source);
+        }
+        sc.close();
+    }
+
+    // 双指针逆序遍历
+    private static void printSubSequence(String target, String source) {
 
         int targetLength = target.length();
         int sourceLength = source.length();
 
-        // 逆序遍历
-        int i = targetLength - 1;
-        int j = sourceLength - 1;
-        // 是否有匹配的子序列
+        int tIndex = targetLength - 1;
+        int sIndex = sourceLength - 1;
+
         boolean flag = false;
-        while (i >= 0 && j >= 0) {
-            if (target.charAt(i) == source.charAt(j)) {
-                // 目标字符串遍历完毕，说明匹配到了，标记位更新
-                if (i == 0) {
+        while (tIndex >= 0 && sIndex >= 0) {
+            // 目标字符某一个匹配命中
+            if (target.charAt(tIndex) == source.charAt(sIndex)) {
+                // 当位置为0都匹配中时，说明子序列
+                if (tIndex == 0) {
+                    System.out.println(sIndex);
                     flag = true;
-                    System.out.println(j);
+                    break;
                 }
-                // 当前配置匹配上了，匹配下一个位置
-                i--;
+                // 匹配命中，去下一个位置继续匹配
+                tIndex--;
             }
-            // 不匹配，往下一位去寻找
-            j--;
+            // 没有匹配命中，从下一个位置继续匹配
+            sIndex--;
         }
+        // 非子序列，输出-1
         if (!flag) {
             System.out.println(-1);
         }

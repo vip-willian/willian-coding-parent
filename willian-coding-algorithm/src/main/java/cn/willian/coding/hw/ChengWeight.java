@@ -43,41 +43,38 @@ public class ChengWeight {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         while (sc.hasNext()) {
-            // 砝码数量
+            // 砝码个数
             int n = sc.nextInt();
-            // 砝码重量数组
+            // 重量数组
             int[] weights = new int[n];
-            // 砝码个数数组
-            int[] nums = new int[n];
-            // 初始化重量数组
             for (int i = 0; i < n; i++) {
                 weights[i] = sc.nextInt();
             }
-            // 初始化个数数组
+            // 数量数组
+            int[] nums = new int[n];
             for (int i = 0; i < n; i++) {
                 nums[i] = sc.nextInt();
             }
-            int num = diffWeightNum(n, weights, nums);
-            System.out.println(num);
+            System.out.println(diffWeightNum(weights, nums));
         }
     }
 
-    private static int diffWeightNum(int n, int[] weights, int[] nums) {
-        Set<Integer> result = new HashSet<>();
-        // 使用第一个砝码的个数有多少不同的重量
+    private static Integer diffWeightNum(int[] weights, int[] nums) {
+
+        Set<Integer> diffWeight = new HashSet<>();
+        // 第一个砝码，取0个 到取N 个不同的重量
         for (int i = 0; i <= nums[0]; i++) {
-            // 使用0个砝码，使用1个砝码、使用i个砝码 ...
-            result.add(i * weights[0]);
+            diffWeight.add(i * weights[0]);
         }
-        for (int i = 1; i < n; i++) {
-            List<Integer> path = new ArrayList<>(result);
+        // 从第二个砝码开始
+        for (int i = 1; i < weights.length; i++) {
+            List<Integer> path = new ArrayList<>(diffWeight);
             for (int j = 0; j <= nums[i]; j++) {
                 for (Integer oldWeight : path) {
-                    int weight = oldWeight + j * weights[i];
-                    result.add(weight);
+                    diffWeight.add(oldWeight + j * weights[i]);
                 }
             }
         }
-        return result.size();
+        return diffWeight.size();
     }
 }

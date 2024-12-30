@@ -43,41 +43,48 @@ public class ComputeStringEditDistance {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         while (sc.hasNext()) {
-            String a = sc.nextLine();
-            String b = sc.nextLine();
-            System.out.println(getEditDistance(a, b));
+            String source = sc.nextLine();
+            String target = sc.nextLine();
+            // 获取字符串的编辑距离
+            System.out.println(getEditDistance(source, target));
         }
     }
 
-    private static int getEditDistance(String a, String b) {
+    private static Integer getEditDistance(String source, String target) {
 
-        int m = a.length();
-        int n = b.length();
-
-        // dp[i][j]表示A串从第0个字符开始到第i个字符 和 B串从第0个字符开始到第j个字符 的编辑距离
-        int[][] dp = new int[m][n];
-        // A串为空，B串为空 编辑距离为0
-        dp[0][0] = 0;
-        // A串不为空，B串为空 删除对应i次字符
-        for (int i = 1; i < m; i++) {
-            dp[i][0] = i;
+        int m = source.length();
+        int n = target.length();
+        if (m == 0 || n == 0) {
+            return 0;
         }
-        // A串为空，B串不为空 增加对应j次字符
-        for (int j = 1; j < n; j++) {
+        int[][] dp = new int[m + 1][n + 1];
+        // source字符为空,target字符不为空
+        for (int j = 1; j <= n; j++) {
+            // 增加j次对应的字符次数
             dp[0][j] = j;
         }
-        for (int i = 1; i < m; i++) {
-            for (int j = 1; j < n; j++) {
-                // 第二种方案 i位置字符 != j位置字符 插入 dp[i][j-1] + 1
-                int insertCase = dp[i][j - 1] + 1;
-                // 第三种方案 i位置字符 != j位置字符 删除 dp[i-1][j] + 1
-                int deleteCase = dp[i - 1][j] + 1;
-                // 第一种方案 i位置字符 == j位置字符 dp[i-1][j-1]
-                // 第四种方案 i位置字符 != j位置字符 替换 dp[i-1][j-1] + 1
-                int replaceCase = (a.charAt(i) == b.charAt(j) ? 0 : 1) + dp[i - 1][j - 1];
-                dp[i][j] = Math.min(Math.min(insertCase, deleteCase), replaceCase);
+        // target字符为空,source字符不为空
+        for (int i = 1; i <= n; i++) {
+            // 删除i次对应的字符次数
+            dp[i][0] = i;
+        }
+        for (int i = 1; i <= m; i++) {
+            for (int j = 1; j <= n; j++) {
+                // 如果source 和 target 两位位置字符相等
+                if (source.charAt(i - 1) == target.charAt(j - 1)) {
+                    // 等于 source i - 1 和 target j - 1 位置的编辑距离
+                    dp[i][j] = dp[i - 1][j - 1];
+                } else {
+                    dp[i][j] = Math.min(Math.min(
+                        // 第一种方式: 删除i-1位置的字符
+                        dp[i - 1][j] + 1,
+                        // 第二种方式: 增加j-1位置的字符
+                        dp[i][j - 1] + 1),
+                        // 第三种方式: 替换i-1和j-1位置的字符,保持相等
+                        dp[i - 1][j - 1] + 1);
+                }
             }
         }
-        return dp[m - 1][n - 1];
+        return dp[m][n];
     }
 }

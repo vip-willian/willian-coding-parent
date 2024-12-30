@@ -30,22 +30,18 @@ import java.util.Scanner;
 public class MaxValue {
 
     public static void main(String[] args) {
+
         Scanner sc = new Scanner(System.in);
-        String[] numStrings = sc.nextLine().split(" ");
-
-        // 自定义排序
-        Arrays.sort(numStrings, (a, b) -> (b + a).compareTo(a + b));
-
-        // 特殊处理，如果第一个数字为0
-        if (numStrings[0].equals("0")) {
-            System.out.println("0");
-            return;
+        while (sc.hasNext()) {
+            String[] numStrings = sc.nextLine().split(" ");
+            // 进行排序
+            Arrays.sort(numStrings, (a, b) -> (b + a).compareTo(a + b));
+            if ("0".equals(numStrings[0])) {
+                System.out.println("0");
+            } else {
+                System.out.println(String.join("", numStrings));
+            }
         }
-        // 拼接所有字符串
-        StringBuilder sb = new StringBuilder();
-        for (String numString : numStrings) {
-            sb.append(numString);
-        }
-        System.out.println(sb);
+        sc.close();
     }
 }
