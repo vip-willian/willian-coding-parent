@@ -33,13 +33,14 @@ import java.util.Scanner;
 // 输出
 // 3 4 5 6 7
 public class LandlordFightingOfStraight {
+
+    private static final String[] SHUN = {"3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"};
+
     public static void main(String[] args) {
-        String[] c = {"3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"};
         Map<String, Integer> map = new HashMap<>();
-        for (String s : c) {
+        for (String s : SHUN) {
             map.put(s, 0);
         }
-
         // 读取用户输入的牌
         Scanner sc = new Scanner(System.in);
         String[] cards = sc.nextLine().split(" ");
@@ -48,18 +49,17 @@ public class LandlordFightingOfStraight {
                 map.put(card, map.get(card) + 1);
             }
         }
-
         // 定义一个变量，是否不存在顺子
         boolean isNotExistStraight = true;
-        for (int i = 0; i < c.length + 1; i++) {
+        for (int i = 0; i < SHUN.length + 1; i++) {
             // 获取连续的牌的个数
-            int count = getContinuousCardCount(i, map, c);
+            int count = getContinuousCardCount(i, map);
             // 连续的个数大于等于5个，说明存在顺子
             if (count >= 5) {
                 // 打印顺子
-                print(i, count, c);
+                print(i, count);
                 // 清除已经使用的牌
-                clear(i, count, map, c);
+                clear(i, count, map);
                 // 更新标志位
                 isNotExistStraight = false;
             }
@@ -71,24 +71,24 @@ public class LandlordFightingOfStraight {
         sc.close();
     }
 
-    public static void clear(int i, int count, Map<String, Integer> map, String[] c) {
+    public static void clear(int i, int count, Map<String, Integer> map) {
         for (int j = i; j < i + count; j++) {
-            map.put(c[j], map.get(c[j]) - 1);
+            map.put(SHUN[j], map.get(SHUN[j]) - 1);
         }
     }
 
-    public static void print(int i, int count, String[] c) {
+    public static void print(int i, int count) {
         for (int j = i; j < i + count; j++) {
-            System.out.print(c[j] + " ");
+            System.out.print(SHUN[j] + " ");
         }
         System.out.println();
     }
 
-    public static int getContinuousCardCount(int i, Map<String, Integer> map, String[] c) {
+    public static int getContinuousCardCount(int i, Map<String, Integer> map) {
 
         int res = 0;
-        for (int j = i; j < c.length; j++) {
-            if (map.get(c[j]) >= 1) {
+        for (int j = i; j < SHUN.length; j++) {
+            if (map.get(SHUN[j]) >= 1) {
                 res++;
             } else {
                 break;
