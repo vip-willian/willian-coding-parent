@@ -1,10 +1,9 @@
 package cn.willian.coding.hw;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 /**
  * @author <a href="mailto:willian.wyann@gmail.com">willian</a>
@@ -45,13 +44,8 @@ public class EnglishInputMethod {
         String pre = sc.nextLine();
 
         // 使用正则表达式分割字符串
-        String[] words = word.split("[^a-zA-Z]");
-        // 利用Set进行去重
-        List<String> result = new ArrayList<>(new HashSet<>(Arrays.asList(words)));
-        // 对去重后的数组进行排序
-        result.sort(null);
-        // 过滤掉不以pre开头的单词
-        result.removeIf(x -> !x.startsWith(pre));
+        List<String> result = Arrays.stream(word.split("[^a-zA-Z]")).distinct().sorted().filter(x -> x.startsWith(pre))
+            .collect(Collectors.toList());
 
         if (!result.isEmpty()) {
             System.out.println(String.join(" ", result));

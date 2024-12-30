@@ -62,7 +62,7 @@ public class GuessThePassword {
         List<String> result = new ArrayList<>();
         List<String> path = new ArrayList<>();
 
-        dfs(nums, 0, minCount, path, result);
+        dfs(nums, minCount, path, result, 0);
 
         if (!result.isEmpty()) {
             // 打印最终结果
@@ -74,26 +74,30 @@ public class GuessThePassword {
         }
     }
 
-    public static void dfs(List<String> nums, int index, int minCount, List<String> path, List<String> result) {
+    public static void dfs(List<String> nums, int minCount, List<String> path, List<String> result, int index) {
 
-        // 定义终止条件
+        // 收集满足调价你的答案
         if (path.size() >= minCount) {
             // 返回之前收集答案
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < path.size(); i++) {
-                if (i > 0) {
+                if (i != 0) {
                     sb.append(",");
                 }
                 sb.append(path.get(i));
             }
             result.add(sb.toString());
         }
-        if (path.size() == nums.size()) {
+        // 已经遍历到最后一个数字,终止条件
+        if (index == nums.size()) {
             return;
         }
+        // 回溯
         for (int i = index; i < nums.size(); i++) {
+            // 添加选择路径
             path.add(nums.get(i));
-            dfs(nums, i + 1, minCount, path, result);
+            dfs(nums, minCount, path, result, i + 1);
+            // 撤回上次选择，重选
             path.remove(path.size() - 1);
         }
     }
