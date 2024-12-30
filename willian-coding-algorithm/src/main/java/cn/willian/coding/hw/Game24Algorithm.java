@@ -34,37 +34,35 @@ public class Game24Algorithm {
 
     private static boolean isGet24(List<Integer> nums) {
 
-        boolean isGet24 = false;
         boolean[] visited = new boolean[4];
-        for (int i = 0; i < 4; i++) {
-            visited[i] = true;
-            if (dfs(nums, visited, nums.get(i))) {
-                isGet24 = true;
-                break;
-            }
-        }
-        return isGet24;
+        return dfs(nums, visited, 0, 0);
     }
 
-    private static boolean dfs(List<Integer> nums, boolean[] visited, Integer value) {
+    private static boolean dfs(List<Integer> nums, boolean[] visited, Integer total, int index) {
 
         for (int i = 0; i < nums.size(); i++) {
             if (!visited[i]) {
                 visited[i] = true;
-                if (
-                // 加法
-                dfs(nums, visited, value + nums.get(i)) ||
-                // 减法
-                    dfs(nums, visited, value - nums.get(i)) ||
-                    // 乘法
-                    dfs(nums, visited, value * nums.get(i)) ||
-                    // 除法
-                    (value % nums.get(i) == 0 && dfs(nums, visited, value / nums.get(i)))) {
-                    return true;
+                if (index == 0) {
+                    if (dfs(nums, visited, nums.get(i), index + 1)) {
+                        return true;
+                    }
+                } else {
+                    if (
+                    // 加法
+                    dfs(nums, visited, total + nums.get(i), index + 1) ||
+                    // 减法
+                        dfs(nums, visited, total - nums.get(i), index + 1) ||
+                        // 乘法
+                        dfs(nums, visited, total * nums.get(i), index + 1) ||
+                        // 除法
+                        (total % nums.get(i) == 0 && dfs(nums, visited, total / nums.get(i), index + 1))) {
+                        return true;
+                    }
                 }
                 visited[i] = false;
             }
         }
-        return value == 24;
+        return index == 4 && total == 24;
     }
 }

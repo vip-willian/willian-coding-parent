@@ -87,42 +87,39 @@ public class Operation24Point {
 
     private static boolean isGet24(String[] cards) {
 
-        boolean isGet24 = false;
         boolean[] visited = new boolean[4];
-        for (int i = 0; i < 4; i++) {
-            visited[i] = true;
-            if (dfs(cards, visited, cards[i], map.get(cards[i]))) {
-                isGet24 = true;
-                break;
-            }
-            visited[i] = false;
-        }
-        return isGet24;
+        return dfs(cards, visited, "", 0, 0);
     }
 
-    private static boolean dfs(String[] cards, boolean[] visited, String exp, Integer value) {
+    private static boolean dfs(String[] cards, boolean[] visited, String operator, Integer total, Integer index) {
 
         for (int i = 0; i < cards.length; i++) {
             if (!visited[i]) {
                 visited[i] = true;
                 String numStr = cards[i];
                 Integer num = map.get(numStr);
-                if (
-                // 加法
-                dfs(cards, visited, exp + "+" + numStr, value + num) ||
-                // 减法
-                    dfs(cards, visited, exp + "-" + numStr, value - num) ||
-                    // 乘法
-                    dfs(cards, visited, exp + "*" + numStr, value * num) ||
-                    // 除法
-                    (value % num == 0 && dfs(cards, visited, exp + "/" + numStr, value / num))) {
-                    return true;
+                if (index == 0) {
+                    if (dfs(cards, visited, operator + numStr, num, index + 1)) {
+                        return true;
+                    }
+                } else {
+                    if (
+                    // 加法
+                    dfs(cards, visited, operator + "+" + numStr, total + num, index + 1) ||
+                    // 减法
+                        dfs(cards, visited, operator + "-" + numStr, total - num, index + 1) ||
+                        // 乘法
+                        dfs(cards, visited, operator + "*" + numStr, total * num, index + 1) ||
+                        // 除法
+                        (total % num == 0 && dfs(cards, visited, operator + "/" + numStr, total / num, index + 1))) {
+                        return true;
+                    }
                 }
                 visited[i] = false;
             }
         }
-        if (value == 24) {
-            System.out.println(exp);
+        if (total == 24 && index == cards.length) {
+            System.out.println(operator);
             return true;
         }
         return false;
