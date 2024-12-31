@@ -98,7 +98,7 @@ public class NotPalindromeString {
                 }
             }
         }
-        return "0";
+        return "NO";
     }
 
     /**
