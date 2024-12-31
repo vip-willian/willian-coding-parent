@@ -54,6 +54,7 @@ public class NotPalindromeString {
 
         while (sc.hasNext()) {
             int N = sc.nextInt();
+            sc.nextLine();
             String str = sc.nextLine();
             String nextStr = findNextStr(str, N);
             System.out.println(nextStr);
